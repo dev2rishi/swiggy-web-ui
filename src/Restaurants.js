@@ -1,5 +1,5 @@
 import React from "react";
-import "./list.scss";
+import "./list.css";
 import Item from "./Item";
 import Sidebar from "./Sidebar";
 

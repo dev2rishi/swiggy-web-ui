@@ -1,5 +1,5 @@
 import React from "react";
-import "./item.scss";
+import "./item.css";
 
 const imgArray = [
   "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=500&q=60",
