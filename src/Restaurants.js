@@ -15,13 +15,13 @@ class Restaurants extends React.Component {
       isAutoScrolling: false,
     };
     const intersectionCallback = (entries) => {
-      // console.log(entries);
+    
       if (entries.length === 1 && this.state.isAutoScrolling === false) {
         if (
           entries[0].isIntersecting === false &&
           entries[0].boundingClientRect.bottom < 0
         ) {
-          // section scrolled to up, select the next section.
+      
           let hideSectionId = entries[0].target.id;
           console.log("hideSectionId: ", hideSectionId);
           let hideSectionIndex = this.state.categories.findIndex(
@@ -38,7 +38,7 @@ class Restaurants extends React.Component {
           entries[0].boundingClientRect.bottom >= 0 &&
           entries[0].boundingClientRect.y <= 0
         ) {
-          // section comming from top. Set as selected.
+         
           let upcommingSectionId = entries[0].target.id;
           console.log("upcommingSectionId: ", upcommingSectionId);
           let upcommingSectionIndex = this.state.categories.findIndex(
@@ -62,24 +62,20 @@ class Restaurants extends React.Component {
   }
   componentDidMount() {
     this.fetchData();
-    // document.addEventListener("scroll", this.handleScroll);
+    
     setTimeout(() => {
       this.addObservers();
     }, 2000);
   }
-  // componentWillUnmount() {
-  // document.removeEventListener("scroll", this.handleScroll);
-  // }
-  async fetchData() {
-    // fetch('http://cdn.adpushup.com/reactTask.json');
-    // Above API is served over http, not https & return type is text, not JSON.
 
+  async fetchData() {
+   
     fetch("https://mocki.io/v1/3fb1488d-bbdb-4ddd-9a03-a0d2efc98597")
       .then((_) => {
         return _.json();
       })
       .then((response) => {
-        // console.log(response);
+ 
         let allRestaurants = [];
         let exclusiveList = [];
         let visibleItems = {};
@@ -117,7 +113,7 @@ class Restaurants extends React.Component {
   }
   async selectCategory(category) {
     if (this.state.showAll) {
-      // adding observers again
+   
       setTimeout(() => {
         this.addObservers();
       }, 2000);
@@ -128,8 +124,8 @@ class Restaurants extends React.Component {
   scrollToId(domId) {
     let element = document.getElementById(domId);
     if (element) {
-      // console.log(domId);
-      this.setState({ isAutoScrolling: true }); // block intersection in-between
+      
+      this.setState({ isAutoScrolling: true }); 
       setTimeout(() => {
         this.setState({ isAutoScrolling: false });
       }, 1000);
@@ -137,7 +133,7 @@ class Restaurants extends React.Component {
     }
   }
   async showAll() {
-    // console.log("Showing all");
+ 
     this.observer.disconnect();
     await this.setState({ showAll: true, activeCategory: "See All" });
     this.scrollToId("See All");
@@ -150,9 +146,7 @@ class Restaurants extends React.Component {
       },
     });
   }
-  // handleScroll(e) {
-  //   console.log(e);
-  // }
+ 
   render() {
     const { categories, activeCategory, allRestaurants } = this.state;
     return (
